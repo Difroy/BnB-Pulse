@@ -24,26 +24,28 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void registraUtente(User user) {
-
+		if(usernameCheck(user.getUsername())) {
+			userDao.save(user);
+		} else {
+			throw new IllegalArgumentException("Username already in use!");
+		}
 		
 	}
 
 	@Override
 	public boolean usernameCheck(String username) {
-		// TODO Auto-generated method stub
-		return false;
+		return userDao.findByUsername(username) == null;	
 	}
 
 	@Override
 	public boolean emailCheck(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return userDao.findByEmail(email) == null;
+		
 	}
 
 	@Override
 	public void editUser(User user) {
-		// TODO Auto-generated method stub
-		
+		userDao.save(user);
 	}
 
 }
