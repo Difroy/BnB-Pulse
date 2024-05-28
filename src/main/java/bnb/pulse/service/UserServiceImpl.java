@@ -10,10 +10,8 @@ import bnb.pulse.model.User;
 
 @Service
 public class UserServiceImpl implements UserService{
-
 	@Autowired
 	private UserDao userDao;
-	
 	@Override
 	public boolean loginUtente(String username, String password, HttpSession session) {
 			User user = userDao.findByUsernameAndPassword(username, password);
@@ -21,29 +19,24 @@ public class UserServiceImpl implements UserService{
 				session.setAttribute("user", user);
 			return true;
 	}
-
 	@Override
 	public void registraUtente(User user) {
-
-		
+		if(usernameCheck(user.getUsername())) {
+			userDao.save(user);
+		} else {
+			throw new IllegalArgumentException ("Username già in uso");
+		}
 	}
-
 	@Override
 	public boolean usernameCheck(String username) {
-		// TODO Auto-generated method stub
-		return false;
+		return userDao.findByUsername(username) == null;
 	}
-
 	@Override
 	public boolean emailCheck(String email) {
-		// TODO Auto-generated method stub
-		return false;
+		return userDao.findByEmail(email) == null;
 	}
-
 	@Override
 	public void editUser(User user) {
-		// TODO Auto-generated method stub
-		
+		userDao.save(user);
 	}
-
 }
