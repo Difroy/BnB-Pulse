@@ -1,24 +1,40 @@
 @charset "utf-8";
 
 .navbar-brand .logoN {
-            max-height: 40px; /* Imposta l'altezza massima del logo */
-            width: auto; /* Mantieni la proporzione dell'immagine */
-        }
-        
-        .navbar {
-            justify-content: center;
-        }
+	max-height: 40px; /* Imposta l'altezza massima del logo */
+	width: auto; /* Mantieni la proporzione dell'immagine */
+}
 
-        .navbar .container-fluid {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.navbar {
+	justify-content: center;
+}
 
-        .navbar-brand {
-            margin-right: auto;
-        }
+.navbar .container-fluid {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-width: 1200px; /* Imposta una larghezza massima per la navbar */
+    margin: 0 auto; /* Centra la navbar con margini automatici */
+}
 
-        .navbar-collapse {
-            flex-grow: 0;
-        }
+.navbar-brand {
+	margin-right: auto;
+}
+
+.navbar-collapse {
+	flex-grow: 0;
+}
+
+.btn.btn-warning, .dropdown-menu.bg-warning, .btn-warning, .bi-search {
+	background-color: #007bff !important;
+	/* Cambia il colore di sfondo a blu */
+	border-color: #007bff !important;
+	/* Cambia il colore del bordo a blu */
+	color: white !important; /* Cambia il colore del testo a bianco */
+}
+
+.dropdown-menu .dropdown-item:hover {
+	background-color: #0056b3 !important;
+	/* Cambia il colore di sfondo al passaggio del mouse */
+	color: white !important; /* Mantieni il colore del testo bianco */
+}

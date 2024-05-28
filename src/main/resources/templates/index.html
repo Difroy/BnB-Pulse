@@ -84,7 +84,7 @@
 						th:href="@{/carrello}">Carrello</a></li>
 				</ul>
 			</div>
-			<div th:unless="${session['utente'] != null}"
+			<div th:unless="${session['utente']!= null}"
 				class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
 					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
