@@ -14,7 +14,7 @@ import bnb.pulse.service.UserService;
 import jakarta.validation.Valid;
 
 @Controller
-@RequestMapping("/newuser")
+@RequestMapping("/registration")
 public class UserRegistrationController {
 
 	@Autowired
@@ -24,17 +24,17 @@ public class UserRegistrationController {
 	public String getPage (Model model) {
 		User user = new User ();
 		model.addAttribute("user", user);
-		return "newuser";
+		return "registration";
 		
 	}
 	
 	@PostMapping
 	public String formRegistration(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "newuser";
+			return "registration";
 		}
 		
-		return "newuser";
+		return "registration";
 
 	}
 	

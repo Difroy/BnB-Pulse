@@ -1,10 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8">
-<title>Accesso BnB Pulse</title>
+
+
+<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
+	rel="stylesheet">
+ <link th:href="@{style.css}" rel="stylesheet">
+<title>Home - BnB Pulse</title>
+
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}"> <img
+				th:src="@{LOGO.png}" alt="Logo"
+				class="logoN d-inline-block align-top me-2">
+			</a>
+			<form class="d-flex ms-2 flex-grow-1" role="search"
+				action="/categoria/ricerca" method="get">
+				<div class="input-group">
+					<div class="dropdown">
+						<button class="btn btn-warning dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-bs-toggle="dropdown"
+							aria-expanded="false">Categorie</button>
+						<ul class="dropdown-menu bg-warning"
+							aria-labelledby="dropdownMenuButton">
+							<li th:each="categoria : ${categorie}"><a
+								th:text="${categoria.tipo}" class="dropdown-item"
+								th:href="@{/categoria(id=${categoria.id})}"></a></li>
+						</ul>
+					</div>
+					<input class="form-control" type="search" placeholder="Cerca"
+						aria-label="Search" name="ricerca">
+					<button class="btn btn-warning" type="submit">
+						<i class="bi bi-search"></i>
+					</button>
+				</div>
+			</form>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarText"
+				aria-controls="navbarText" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div th:if="${session['user'] != null}"
+				class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img th:src="@{'/' + ${utente.avatar}}"
+							alt="Immagine Impostazioni" class="img-fluid rounded-circle"
+							style="width: 30px; height: 30px;">
+					</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<!-- Inserisci qui le voci del dropdown -->
+							<li><a class="dropdown-item" th:href="@{/areariservata}">Area
+									Riservata</a></li>
+							<li><a class="dropdown-item"
+								th:href="@{/modificacredenziali}">Modifica Credenziali</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li class="nav-item"><a th:href="@{/areariservata/logout}"
+								class="nav-link active" aria-current="page">Logout</a></li>
+						</ul></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/}">IT</a></li>
+				</ul>
+			</div>
+			<div th:unless="${session['utente']!= null}"
+				class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
+					</li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/registrazioneutente}">Registrazione</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/}">IT</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>
