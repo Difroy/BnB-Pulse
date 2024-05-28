@@ -5,12 +5,16 @@ import java.time.LocalDateTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+
+
 
 @Entity
 @Table(name = "profiles")
@@ -46,6 +50,20 @@ public class Profile {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "update_pr", nullable = false)
     private LocalDateTime updatePr;
+	
+	@OneToOne(
+			mappedBy = "profile",
+			cascade = CascadeType.REFRESH
+			)
+	private User user;
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	public int getId() {
 		return id;
