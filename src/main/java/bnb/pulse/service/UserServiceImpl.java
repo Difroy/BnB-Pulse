@@ -24,12 +24,13 @@ public class UserServiceImpl implements UserService{
 		if(usernameCheck(user.getUsername())) {
 			userDao.save(user);
 		} else {
-			throw new IllegalArgumentException ("Username già in uso");
+			throw new IllegalArgumentException("Username already in use!");
 		}
+		
 	}
 	@Override
 	public boolean usernameCheck(String username) {
-		return userDao.findByUsername(username) == null;
+		return userDao.findByUsername(username) == null;	
 	}
 	@Override
 	public boolean emailCheck(String email) {
