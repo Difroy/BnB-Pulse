@@ -20,7 +20,7 @@ public class UserLoginController {
 	
 	@GetMapping
 	public String getPage (Model model, HttpSession session, @RequestParam(name = "error", required = false) String error) {
-		User user = (User) session.getAttribute("utente");
+		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
 		
 		if(session.getAttribute("user") != null) {

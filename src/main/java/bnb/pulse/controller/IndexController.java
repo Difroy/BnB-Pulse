@@ -23,4 +23,10 @@ public class IndexController {
 		return "index";
 		
 	}
+	@GetMapping("/logout")
+	public String logoutUtente (HttpSession session) {
+		session.removeAttribute("user");
+		return "redirect:/";
+		
+	}
 }
