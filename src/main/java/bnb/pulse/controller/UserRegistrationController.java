@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import bnb.pulse.model.User;
+import bnb.pulse.model.UserType;
 import bnb.pulse.service.UserService;
 import jakarta.validation.Valid;
 
@@ -18,7 +19,7 @@ import jakarta.validation.Valid;
 public class UserRegistrationController {
 
 	@Autowired
-	public UserService userservice;
+	public UserService userService;
 	
 	@GetMapping
 	public String getPage (Model model) {
@@ -34,8 +35,14 @@ public class UserRegistrationController {
 			return "registration";
 		}
 		
-		return "registration";
-
+		if (user.getUserType() == null) {
+            user.setUserType(UserType.GUEST);
+        }
+		
+		userService.userRegister(user);
+		
+		
+		return "redirect:/";
 	}
 	
 }

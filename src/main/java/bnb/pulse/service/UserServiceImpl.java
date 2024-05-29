@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService{
 			return true;
 	}
 	@Override
-	public void registraUtente(User user) {
+	public void userRegister(User user) {
 		if(usernameCheck(user.getUsername())) {
 			userDao.save(user);
 		} else {
