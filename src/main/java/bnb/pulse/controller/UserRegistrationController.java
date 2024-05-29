@@ -1,5 +1,7 @@
 package bnb.pulse.controller;
 
+/*import bnb.pulse.model.UserType;
+*/
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import bnb.pulse.model.User;
-import bnb.pulse.model.UserType;
 import bnb.pulse.service.UserService;
 import jakarta.validation.Valid;
 
@@ -35,9 +36,9 @@ public class UserRegistrationController {
 			return "registration";
 		}
 		
-		if (user.getUserType() == null) {
-            user.setUserType(UserType.GUEST);
-        }
+		/*
+		 * if (user.getUserType() == null) { user.setUserType(UserType.GUEST); }
+		 */
 		
 		userService.userRegister(user);
 		

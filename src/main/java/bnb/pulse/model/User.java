@@ -1,7 +1,7 @@
 package bnb.pulse.model;
 
-import bnb.pulse.model.UserType;
-import jakarta.persistence.CascadeType;
+/*import bnb.pulse.model.UserType;
+*/import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,9 +26,11 @@ public class User {
 	@JoinColumn(name = "id_profile", referencedColumnName = "id")
 	private Profile profile;
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "user_type", nullable = false)
-	private UserType userType;
+	/*
+	 * @Enumerated(EnumType.STRING)
+	 * 
+	 * @Column(name = "user_type", nullable = false) private UserType userType;
+	 */
 
 	@Column(name = "username", nullable = false, length = 40)
 	private String username;
@@ -56,13 +58,11 @@ public class User {
 		this.profile = profile;
 	}
 
-	public UserType getUserType() {
-		return userType;
-	}
-
-	public void setUserType(UserType userType) {
-		this.userType = userType;
-	}
+	/*
+	 * public UserType getUserType() { return userType; }
+	 * 
+	 * public void setUserType(UserType userType) { this.userType = userType; }
+	 */
 
 	public String getUsername() {
 		return username;

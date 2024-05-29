@@ -161,7 +161,7 @@ body, html {
 							<p th:if="${#fields.hasErrors('username')}"
 								th:errors="*{username}"></p>
 						</div>
-						<div class="mb-3">
+						<!-- <div class="mb-3">
 							<label for="userType" class="form-label">Tipo di Utente</label> <select
 								class="form-select" id="userType" th:field="*{userType}"
 								required>
@@ -173,7 +173,7 @@ body, html {
 							</select>
 							<p th:if="${#fields.hasErrors('userType')}"
 								th:errors="*{userType}"></p>
-						</div>
+						</div> --> 
 						<div class="mb-3">
 							<label for="email" class="form-label">Email</label> <input
 								type="email" class="form-control" id="email" th:field="*{email}"
