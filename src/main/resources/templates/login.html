@@ -13,16 +13,13 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
 	rel="stylesheet">
  <link th:href="@{style.css}" rel="stylesheet">
-<title>Home - BnB Pulse</title>
-
+<title>Login - BnB Pulse</title>
 </head>
 <body>
-
 <nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}"> <img
-				th:src="@{LOGO.png}" alt="Logo"
-				class="logoN d-inline-block align-top me-2">
+			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{LOGO.png}"
+				alt="Logo" class="logoN d-inline-block align-top me-2">
 			</a>
 			<form class="d-flex ms-2 flex-grow-1" role="search"
 				action="/categoria/ricerca" method="get">
@@ -67,28 +64,60 @@
 									Riservata</a></li>
 							<li><a class="dropdown-item"
 								th:href="@{/modificacredenziali}">Modifica Credenziali</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
+							<li><hr class="dropdown-divider"></li>
 							<li class="nav-item"><a th:href="@{/areariservata/logout}"
 								class="nav-link active" aria-current="page">Logout</a></li>
 						</ul></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/}">IT</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
 				</ul>
 			</div>
 			<div th:unless="${session['utente']!= null}"
 				class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
-					</li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
 					<li class="nav-item"><a class="nav-link"
-						th:href="@{/registrazioneutente}">Registrazione</a></li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/}">IT</a></li>
+						th:href="@{/registration}">Registrazione</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
+	
+	
+	<div class="container-fluid">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card" id="cardLog">
+					<div class="card-body" id="cardL">
+						<h5 class="card-title text-center mb-4" id="cardT">Login</h5>
+						<form action="/login" method="post">
+							<div class="mb-3">
+								<label for="username" class="form-label">Username</label> <input
+									type="text" class="form-control" id="username" name="username"
+									required>
+							</div>
+							<div class="mb-3">
+								<label for="password" class="form-label">Password</label>
+								<div class="input-group">
+									<input type="password" class="form-control" id="password"
+										name="password" required>
+									<!-- <button class="btn btn-outline-secondary" type="button"
+										id="togglePassword">👁️</button> -->
+								</div>
+							</div>
+							<button type="submit" class="btn btn-primary w-100">Accedi</button>
+						</form>
+						<p class="mt-3 text-center">
+							Non sei ancora registrato? <a th:href="@{registrazioneutente}">Clicca
+								qui per registrarti</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </body>
 </html>
