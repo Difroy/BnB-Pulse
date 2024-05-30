@@ -38,3 +38,32 @@
 	/* Cambia il colore di sfondo al passaggio del mouse */
 	color: white !important; /* Mantieni il colore del testo bianco */
 }
+
+.booking-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .booking-card img {
+            width: 100%;
+            height: auto;
+        }
+        .booking-card-body {
+            padding: 15px;
+        }
+        .badge-custom {
+            background-color: #ff3d00;
+            color: #fff;
+        }
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+        .rating {
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 50%;
+            padding: 5px 10px;
+            margin-left: 10px;
+        }
