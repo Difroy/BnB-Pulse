@@ -79,7 +79,7 @@
 	</form>
 
 	<h1>Register Property</h1>
-	<form th:action="@{/register}" th:object="${property}"
+	<form th:action="@{property/register}" th:object="${property}"
 		method="post" enctype="multipart/form-data">
 		<label for="title">Title:</label><br> <input type="text"
 			id="title" th:field="*{title}"><br> <label

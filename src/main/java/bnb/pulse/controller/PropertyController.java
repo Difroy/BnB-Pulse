@@ -79,7 +79,7 @@ public class PropertyController {
 	@PostMapping("register")
 	public String registerProperty(@ModelAttribute Property property, HttpSession session, @RequestParam("coverPhoto") MultipartFile coverPhoto) {
 	    propertyService.saveProperty(property, session, coverPhoto, property.getTitle(), property.getDescription(), property.getAddress(), property.getArea(), property.getCity(), property.getCountry(),  String.valueOf(property.getPricePerNight()), String.valueOf(property.getMaxGuest()));
-	    return "redirect:/property/list";
+	    return "redirect:/property";
 	}
 	
 }
