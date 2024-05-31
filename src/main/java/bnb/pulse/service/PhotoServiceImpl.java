@@ -35,8 +35,8 @@ public class PhotoServiceImpl implements PhotoService {
 	}
 
 	@Override
-	public Photo getPhotoByName(String name) {
-		return photoDao.findByName(name);
+	public Photo getPhotoByUrl(String url) {
+		return photoDao.findByUrl(url);
 	}
 
 }

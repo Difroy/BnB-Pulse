@@ -6,14 +6,16 @@ import org.springframework.data.repository.CrudRepository;
 
 import bnb.pulse.model.Propertie;
 
-public interface PropertieDao extends CrudRepository<Propertie, Integer>{
+public interface PropertieDao extends CrudRepository<Propertie, Integer> {
 
-	List<Propertie> findByRoomId (int idRoom);
-	List<Propertie> findByRoomPhotoIdAndRoomId(Integer photoId, Integer roomId);
-	/* List<Propertie> findByRoomPhotoId(int idPhoto); */
-	List<Propertie> findByNomeContainingIgnoreCase (String name);
+	/*
+	 * List<Propertie> findByRoomId (int idRoom); List<Propertie>
+	 * findByRoomPhotoIdAndRoomId(Integer photoId, Integer roomId); List<Propertie>
+	 * findByRoomPhotoId(int idPhoto); List<Propertie>
+	 * findByNomeContainingIgnoreCase (String name);
+	 */
 	
+	List<Propertie> findByUserId(int userId);
+    List<Propertie> findByTitleContainingIgnoreCase(String title);
 
-	
-	
 }

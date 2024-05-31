@@ -10,5 +10,5 @@ public interface PhotoService {
 	List<Photo>getPhotos();
 	void savePhoto (Photo photo);
 	void deletePhoto (int idPhoto);
-	Photo getPhotoByName(String name);
+	Photo getPhotoByUrl(String url);
 }

@@ -19,8 +19,7 @@ public class PropertieServiceImpl implements PropertieService {
 
 	@Autowired
 	private PropertieDao propertieDao;
-	@Autowired
-	private RoomService roomService;
+	
 
 	@Override
 	public List<Propertie> getProperties() {
@@ -29,10 +28,12 @@ public class PropertieServiceImpl implements PropertieService {
 	@Override
 	public Propertie getPropertieById(int id) {
 		
-		Optional<Propertie> optionalPropertie = propertieDao.findById(id);
-		if (optionalPropertie.isPresent())
-			return optionalPropertie.get();
-		return null;
+		/*
+		 * Optional<Propertie> optionalPropertie = propertieDao.findById(id); if
+		 * (optionalPropertie.isPresent()) return optionalPropertie.get(); return null;
+		 */
+		 Optional<Propertie> optionalPropertie = propertieDao.findById(id);
+	        return optionalPropertie.orElse(null);
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -103,26 +104,26 @@ public class PropertieServiceImpl implements PropertieService {
 	}
 	@Override
 	public void deletePropertie(int id) {
-		// TODO Auto-generated method stub
+		propertieDao.deleteById(id);
 		
 	}
-	@Override
-	public List<Propertie> getPropertieByPhotoAndRoom(Integer photoId, Integer roomId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Propertie> SearchPropertie(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Propertie> getPropertiesByRoomId(int idRoom) {
-		return (List<Propertie>) propertieDao.findByRoomId(idRoom);
-	}
+
+	/*
+	 * @Override public List<Propertie> getPropertieByPhotoAndRoom(Integer photoId,
+	 * Integer roomId) { // TODO Auto-generated method stub return null; }
+	 */
+	/*
+	 * @Override public List<Propertie> SearchPropertie(String name) { // TODO
+	 * Auto-generated method stub return null; }
+	 */
+	/*
+	 * @Override public List<Propertie> getPropertiesByRoomId(int idRoom) { return
+	 * (List<Propertie>) propertieDao.findByRoomId(idRoom); }
+	 */
+	
 	@Override
 	public List<Propertie> getPropertieByName(String name) {
-		return (List<Propertie>) propertieDao.findByNomeContainingIgnoreCase(name);
+		return (List<Propertie>) propertieDao.findByTitleContainingIgnoreCase(name);
 	}
 	@Override
 	public List<Propertie> getPropertieByPhotoId(int idPhoto) {

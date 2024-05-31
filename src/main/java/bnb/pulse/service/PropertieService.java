@@ -17,9 +17,12 @@ public interface PropertieService {
 	double getPriceReserve (HttpSession session);
 	void savePropertie (Propertie propertie, int idUser, MultipartFile coverPhoto, String title, String description, String address, String area, String city, String country, String pricePerNight, String maxGuest );
 	void deletePropertie (int id);
-	List <Propertie> getPropertieByPhotoAndRoom(Integer photoId, Integer roomId);
-	List<Propertie> SearchPropertie (String name);
-	List<Propertie> getPropertiesByRoomId(int idSottocategoria);
+
+	/*
+	 * List <Propertie> getPropertieByPhotoAndRoom(Integer photoId, Integer roomId);
+	 */
+	/* List<Propertie> SearchPropertie (String name); */
+	/* List<Propertie> getPropertiesByRoomId(int idSottocategoria); */
 	List<Propertie> getPropertieByName(String name);
 	List<Propertie> getPropertieByPhotoId (int idPhoto);
 	

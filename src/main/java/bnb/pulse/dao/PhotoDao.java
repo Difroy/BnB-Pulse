@@ -6,5 +6,5 @@ import bnb.pulse.model.Photo;
 
 public interface PhotoDao extends CrudRepository <Photo, Integer> {
 
-	Photo findByName (String name);
+	Photo findByUrl (String url);
 }
