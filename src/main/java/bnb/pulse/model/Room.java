@@ -18,8 +18,8 @@ public class Room {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "id_propertie", nullable = false)
-    private Propertie properties;
+    @JoinColumn(name = "id_property", nullable = false)
+    private Property properties;
 
     @Column(name = "room_type", nullable = false)
     private int roomType;
@@ -46,11 +46,11 @@ public class Room {
         this.id = id;
     }
 
-    public Propertie getProperty() {
+    public Property getProperty() {
         return properties;
     }
 
-    public void setProperty(Propertie properties) {
+    public void setProperty(Property properties) {
         this.properties = properties;
     }
 

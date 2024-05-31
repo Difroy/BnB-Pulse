@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import bnb.pulse.model.Propertie;
+import bnb.pulse.model.Property;
 import bnb.pulse.model.Room;
-import bnb.pulse.service.PropertieService;
+import bnb.pulse.service.PropertyService;
 import bnb.pulse.service.RoomService;
 
 @Controller
 @RequestMapping("/propertie")
-public class PropertieController {
+public class PropertyController {
 
 	@Autowired
-	private PropertieService propertieService;
+	private PropertyService propertyService;
 	
 	@Autowired
 	private RoomService roomService;
@@ -31,31 +31,31 @@ public class PropertieController {
 				@RequestParam(name = "room", required = false) Integer room, @RequestParam(name = "search", required = false) String search) {
 		
 		
-		List<Propertie> properties;
+		List<Property> properties;
 		if(search != null) {
-            properties = propertieService.SearchPropertieByCity(search);
+            properties = propertyService.SearchPropertyByCity(search);
             }else {
-            	properties = propertieService.getProperties();
+            	properties = propertyService.getProperties();
            
             }
 		
 		model.addAttribute("properties ",properties);
-		return "propertie";
+		return "property";
 	}
 	
 	/*
-	 * @GetMapping("/{id}") public String getPropertie(Model
-	 * model, @RequestParam(name = "id", required = false) Integer id) { Propertie
-	 * propertie = propertieService.getPropertieById(id);
-	 * model.addAttribute("propertie", propertie); return "propertie"; }
+	 * @GetMapping("/{id}") public String getProperty(Model
+	 * model, @RequestParam(name = "id", required = false) Integer id) { Property
+	 * property = propertieService.getPropertieById(id);
+	 * model.addAttribute("property", property); return "property"; }
 	 */
 	@GetMapping("/{id}")
-    public String getPropertieDetails(@PathVariable("id") int id, Model model) {
-        Propertie propertie = propertieService.getPropertieById(id);
+    public String getPropertyDetails(@PathVariable("id") int id, Model model) {
+        Property property = propertyService.getPropertyById(id);
         List<Room> rooms = roomService.getRoomsByProperties_Id(id);
-        model.addAttribute("propertie", propertie);
+        model.addAttribute("property", property);
         model.addAttribute("rooms", rooms);
-        return "propertieDetails";
+        return "propertyDetails";
     }
 	
 	@GetMapping("/room/{roomId}")

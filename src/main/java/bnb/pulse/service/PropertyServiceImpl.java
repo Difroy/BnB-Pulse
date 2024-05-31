@@ -10,37 +10,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import bnb.pulse.dao.PropertieDao;
-import bnb.pulse.model.Propertie;
+import bnb.pulse.dao.PropertyDao;
+import bnb.pulse.model.Property;
 import jakarta.servlet.http.HttpSession;
 
 @Service
-public class PropertieServiceImpl implements PropertieService {
+public class PropertyServiceImpl implements PropertyService {
 
 	@Autowired
-	private PropertieDao propertieDao;
+	private PropertyDao propertieDao;
 	
 
 	@Override
-	public List<Propertie> getProperties() {
-		return (List<Propertie>)propertieDao.findAll();
+	public List<Property> getProperties() {
+		return (List<Property>)propertieDao.findAll();
 	}
 	@Override
-	public Propertie getPropertieById(int id) {
+	public Property getPropertyById(int id) {
 		
 		
-		Optional<Propertie> optionalPropertie = propertieDao.findById(id);
+		Optional<Property> optionalPropertie = propertieDao.findById(id);
         return optionalPropertie.orElse(null);
 	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean reserve(int idPropertie, HttpSession session) {
-		Propertie propertie = getPropertieById (idPropertie);
-		List <Propertie> booking;
+		Property propertie = getPropertyById (idPropertie);
+		List <Property> booking;
 		
 		if (session.getAttribute("booking")!=null) {
-			booking = (List <Propertie>) session.getAttribute("reserve");
-			for (Propertie p : booking)
+			booking = (List <Property>) session.getAttribute("reserve");
+			for (Property p : booking)
 				if (p.getId() == propertie.getId())
 					return false;
 		
@@ -56,9 +56,9 @@ public class PropertieServiceImpl implements PropertieService {
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Propertie> getReserve(HttpSession session) {
+	public List<Property> getReserve(HttpSession session) {
 		if (session.getAttribute("booking") != null) {
-			return (List<Propertie>) session.getAttribute("booking");
+			return (List<Property>) session.getAttribute("booking");
 		}
 		return null;
 	}
@@ -66,8 +66,8 @@ public class PropertieServiceImpl implements PropertieService {
 	@Override
 	public void deleteReserve(int idPropertie, HttpSession session) {
 
-		List <Propertie> reserve = (List<Propertie>) session.getAttribute("reserve");
-		for (Propertie p: reserve)
+		List <Property> reserve = (List<Property>) session.getAttribute("reserve");
+		for (Property p: reserve)
 			if (p.getId()==idPropertie) {
 				reserve.remove(p);
 				break;
@@ -83,17 +83,17 @@ public class PropertieServiceImpl implements PropertieService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public double getPriceReserve(HttpSession session) {
-		List <Propertie> reserve = (List<Propertie>) session.getAttribute("reserve");
+		List <Property> reserve = (List<Property>) session.getAttribute("reserve");
 		if (reserve == null) {
 			
 			@SuppressWarnings("null")
-			double total = reserve.stream().mapToDouble(Propertie::getPricePerNight).reduce(0, Double::sum);
+			double total = reserve.stream().mapToDouble(Property::getPricePerNight).reduce(0, Double::sum);
 					return total;
 		}
 		return 0;
 	}
 	@Override
-	public void savePropertie(Propertie propertie, int idUser, MultipartFile coverPhoto, String title,
+	public void saveProperty(Property propertie, int idUser, MultipartFile coverPhoto, String title,
 			String description, String address, String area, String city, String country, String pricePerNight,
 			String maxGuest) {
 		
@@ -105,16 +105,16 @@ public class PropertieServiceImpl implements PropertieService {
 		 propertieDao.deleteById(id);
 	}
 	@Override
-	public List<Propertie> getPropertieByName(String title) {
+	public List<Property> getPropertyByName(String title) {
 		return propertieDao.findByTitle(title);
 	}
 	@Override
-	public List<Propertie> getPropertieByPhotoId(int idPhoto) {
+	public List<Property> getPropertyByPhotoId(int idPhoto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	@Override
-	public List<Propertie> SearchPropertieByCity(String city) {
+	public List<Property> SearchPropertyByCity(String city) {
 		return propertieDao.findByCity(city);
 	}
 }
