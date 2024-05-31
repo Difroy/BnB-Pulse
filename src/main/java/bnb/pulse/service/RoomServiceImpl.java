@@ -23,5 +23,10 @@ public class RoomServiceImpl implements RoomService {
 	public Room getRoomById(int id) {
 		return roomDao.findById(id).get();
 	}
+	
+	@Override
+    public List<Room> getRoomsByProperties_Id(int propertieId) {
+        return roomDao.findByProperties_Id(propertieId);
+    }
 
 }

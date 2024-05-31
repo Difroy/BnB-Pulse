@@ -6,6 +6,6 @@ import bnb.pulse.model.Room;
 
 public interface RoomService {
 	List<Room> getRooms();
-
 	Room getRoomById(int id);
+	List<Room> getRoomsByProperties_Id(int propertieId);
 }
