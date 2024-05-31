@@ -28,12 +28,9 @@ public class PropertieServiceImpl implements PropertieService {
 	@Override
 	public Propertie getPropertieById(int id) {
 		
-		/*
-		 * Optional<Propertie> optionalPropertie = propertieDao.findById(id); if
-		 * (optionalPropertie.isPresent()) return optionalPropertie.get(); return null;
-		 */
-		 Optional<Propertie> optionalPropertie = propertieDao.findById(id);
-	        return optionalPropertie.orElse(null);
+		
+		Optional<Propertie> optionalPropertie = propertieDao.findById(id);
+        return optionalPropertie.orElse(null);
 	}
 	@SuppressWarnings("unchecked")
 	@Override
@@ -101,35 +98,23 @@ public class PropertieServiceImpl implements PropertieService {
 			String maxGuest) {
 		
 		
-	}
+	
+}
 	@Override
 	public void deletePropertie(int id) {
-		propertieDao.deleteById(id);
-		
+		 propertieDao.deleteById(id);
 	}
-
-	/*
-	 * @Override public List<Propertie> getPropertieByPhotoAndRoom(Integer photoId,
-	 * Integer roomId) { // TODO Auto-generated method stub return null; }
-	 */
-	/*
-	 * @Override public List<Propertie> SearchPropertie(String name) { // TODO
-	 * Auto-generated method stub return null; }
-	 */
-	/*
-	 * @Override public List<Propertie> getPropertiesByRoomId(int idRoom) { return
-	 * (List<Propertie>) propertieDao.findByRoomId(idRoom); }
-	 */
-	
 	@Override
-	public List<Propertie> getPropertieByName(String name) {
-		return (List<Propertie>) propertieDao.findByTitleContainingIgnoreCase(name);
+	public List<Propertie> getPropertieByName(String title) {
+		return propertieDao.findByTitle(title);
 	}
 	@Override
 	public List<Propertie> getPropertieByPhotoId(int idPhoto) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+	@Override
+	public List<Propertie> SearchPropertieByCity(String city) {
+		return propertieDao.findByCity(city);
+	}
 }
