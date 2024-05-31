@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-
-
-<meta charset="UTF-8" name="viewport"
+    <meta charset="UTF-8" name="viewport"
 	content="width=device-width, initial-scale=1.0">
-<link
+	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
@@ -14,12 +12,11 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
 	rel="stylesheet">
  <link th:href="@{pulse.css}" rel="stylesheet">
-<title>Home - BnB Pulse</title>
-
+	
+    <title th:text="${propertie.title}">Property Details</title>
 </head>
 <body>
-
-	<nav class="navbar navbar-expand-lg">
+<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{LOGO.png}"
 				alt="Logo" class="logoN d-inline-block align-top me-2">
@@ -54,7 +51,7 @@
 			<div th:if="${session['user'] != null}"
 				class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-					<li class="nav-item"><a class="nav-link" th:href="@{/property}">Area
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Area
 							Riservata</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
@@ -72,46 +69,13 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container mt-5">
-		<div class="row">
-			<div class="col-md-4">
-				<div class="booking-card">
-					<img src="https://via.placeholder.com/400x200"
-						alt="Accommodation Image">
-					<div class="booking-card-body">
-						<h5 class="card-title">hu Roma Camping in town</h5>
-						<p class="card-text text-muted">
-							<i class="bi bi-geo-alt"></i> Aurelio e Monteverde, Roma - A 4,5
-							km dal centro
-						</p>
-						<p class="card-text">
-							<span class="badge bg-success">Colazione</span> <span
-								class="badge bg-primary">Check-in rapido</span>
-						</p>
-						<p class="card-text">
-							<span class="badge badge-custom">Ultima prenotazione per
-								varie date effettuata 2 ore fa</span>
-						</p>
-						<p class="card-text">
-							<span class="price">86 €</span> <span class="text-muted">After
-								tax & fees</span>
-						</p>
-						<p class="card-text">
-							<span class="badge bg-danger">Ne abbiamo ancora 3 a questo
-								prezzo!</span>
-						</p>
-						<p class="card-text">
-							<span class="badge bg-success">CANCELLAZIONE GRATUITA</span>
-						</p>
-						<div>
-							<span class="rating">8,3</span> <span class="text-muted">17.950
-								recensioni</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
+    <h1 th:text="${propertie.title}">Property Details</h1>
+    <p th:text="${propertie.description}"></p>
+    <h2>Rooms</h2>
+    <ul>
+        <li th:each="room : ${rooms}">
+            <a th:href="@{/propertie/room/{roomId}(roomId=${room.id})}" th:text="${room.title}"></a>
+        </li>
+    </ul>
 </body>
 </html>

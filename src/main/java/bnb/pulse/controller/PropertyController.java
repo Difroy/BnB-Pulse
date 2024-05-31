@@ -16,7 +16,7 @@ import bnb.pulse.service.PropertyService;
 import bnb.pulse.service.RoomService;
 
 @Controller
-@RequestMapping("/propertie")
+@RequestMapping("/property")
 public class PropertyController {
 
 	@Autowired
