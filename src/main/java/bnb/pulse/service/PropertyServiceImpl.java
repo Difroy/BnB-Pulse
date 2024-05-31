@@ -83,18 +83,22 @@ public class PropertyServiceImpl implements PropertyService {
 			session.removeAttribute("booking");
 		
 	}
-	@SuppressWarnings("unchecked")
-	@Override
-	public double getPriceReserve(HttpSession session) {
-		List <Property> reserve = (List<Property>) session.getAttribute("reserve");
-		if (reserve == null) {
-			
-			@SuppressWarnings("null")
-			double total = reserve.stream().mapToDouble(Property::getPricePerNight).reduce(0, Double::sum);
-					return total;
-		}
-		return 0;
+	/*@SuppressWarnings("unchecked")
+	
+	 * @Override public double getPriceReserve(HttpSession session) { List
+	 * <Property> reserve = (List<Property>) session.getAttribute("reserve"); if
+	 * (reserve == null) {
+	 * 
+	 * @SuppressWarnings("null") double total =
+	 * reserve.stream().mapToDouble(Property::getPricePerNight).reduce(0,
+	 * Double::sum); return total; } return 0; }
+	 */
+	
+	public double calculateTotalPriceForProperty(int propertyId, int numberOfNights) {
+	    Property property = getPropertyById(propertyId);
+	    return property.calculateTotalPrice(numberOfNights);
 	}
+	
 	@Override
 	public void saveProperty(Property property, HttpSession session, MultipartFile coverPhoto, String title,
 			String description, String address, String area, String city, String country, String pricePerNight,
@@ -134,11 +138,7 @@ public class PropertyServiceImpl implements PropertyService {
 	public List<Property> getPropertyByName(String title) {
 		return propertieDao.findByTitle(title);
 	}
-	@Override
-	public List<Property> getPropertyByPhotoId(int idPhoto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 	@Override
 	public List<Property> SearchPropertyByCity(String city) {
 		return propertieDao.findByCity(city);

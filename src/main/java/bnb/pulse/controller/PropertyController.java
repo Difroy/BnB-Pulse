@@ -6,14 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import bnb.pulse.model.Property;
 import bnb.pulse.model.Room;
 import bnb.pulse.service.PropertyService;
 import bnb.pulse.service.RoomService;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/property")
@@ -38,8 +42,9 @@ public class PropertyController {
             	properties = propertyService.getProperties();
            
             }
-		
 		model.addAttribute("properties ",properties);
+		model.addAttribute("property", new Property());
+		
 		return "property";
 	}
 	
@@ -65,5 +70,16 @@ public class PropertyController {
         return "roomDetails";
     }
 	
+	@GetMapping("register")
+	public String showRegisterPropertyForm(Model model) {
+	    model.addAttribute("property", new Property());
+	    return "registerProperty";
+	}
+	
+	@PostMapping("register")
+	public String registerProperty(@ModelAttribute Property property, HttpSession session, @RequestParam("coverPhoto") MultipartFile coverPhoto) {
+	    propertyService.saveProperty(property, session, coverPhoto, property.getTitle(), property.getDescription(), property.getAddress(), property.getArea(), property.getCity(), property.getCountry(),  String.valueOf(property.getPricePerNight()), String.valueOf(property.getMaxGuest()));
+	    return "redirect:/property/list";
+	}
 	
 }

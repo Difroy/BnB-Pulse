@@ -54,7 +54,9 @@ public class Property {
     @Column(name = "max_guest", nullable = false)
     private int maxGuest;
 
-    // Getters and Setters
+    public double calculateTotalPrice(int numberOfNights) {
+    	        return pricePerNight * numberOfNights;
+    }
 
     public int getId() {
         return id;

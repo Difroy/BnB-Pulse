@@ -13,13 +13,13 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
 	rel="stylesheet">
- <link th:href="@{pulse.css}" rel="stylesheet">
+<link th:href="@{pulse.css}" rel="stylesheet">
 <title>Property - BnB Pulse</title>
 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
+	<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
 			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{LOGO.png}"
 				alt="Logo" class="logoN d-inline-block align-top me-2">
@@ -72,15 +72,39 @@
 			</div>
 		</div>
 	</nav>
-    <h1>Properties</h1>
-    <form action="/propertie" method="get">
-        <input type="text" name="search" placeholder="Search by city">
-        <button type="submit">Search</button>
-    </form>
-    <ul>
-        <li th:each="propertie : ${properties}">
-            <a th:href="@{/propertie/{id}(id=${propertie.id})}" th:text="${propertie.title}"></a>
-        </li>
-    </ul>
+	<h1>Properties</h1>
+	<form action="/property" method="get">
+		<input type="text" name="search" placeholder="Search by city">
+		<button type="submit">Search</button>
+	</form>
+
+	<h1>Register Property</h1>
+	<form th:action="@{/register}" th:object="${property}"
+		method="post" enctype="multipart/form-data">
+		<label for="title">Title:</label><br> <input type="text"
+			id="title" th:field="*{title}"><br> <label
+			for="description">Description:</label><br> <input type="text"
+			id="description" th:field="*{description}"><br> <label
+			for="address">Address:</label><br> <input type="text"
+			id="address" th:field="*{address}"><br> <label
+			for="area">Area:</label><br> <input type="text" id="area"
+			th:field="*{area}"><br> <label for="city">City:</label><br>
+		<input type="text" id="city" th:field="*{city}"><br> <label
+			for="country">Country:</label><br> <input type="text"
+			id="country" th:field="*{country}"><br> <label
+			for="pricePerNight">Price Per Night:</label><br> <input
+			type="text" id="pricePerNight" th:field="*{pricePerNight}"><br>
+		<label for="maxGuest">Max Guest:</label><br> <input type="text"
+			id="maxGuest" th:field="*{maxGuest}"><br> <label
+			for="coverPhoto">Cover Photo:</label><br> <input type="file"
+			id="coverPhoto" name="coverPhoto"><br> <input
+			type="submit" value="Register">
+	</form>
+
+	<ul>
+		<li th:each="property : ${properties}"><a
+			th:href="@{/property/{id}(id=${property.id})}"
+			th:text="${property.title}"></a></li>
+	</ul>
 </body>
 </html>
