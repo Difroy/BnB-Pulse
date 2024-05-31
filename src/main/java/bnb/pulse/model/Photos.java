@@ -19,7 +19,7 @@ public class Photos {
 
     @ManyToOne
     @JoinColumn(name = "id_room", nullable = false)
-    private Rooms rooms;
+    private Room rooms;
 
     @Column(name = "URL", columnDefinition = "LONGTEXT", nullable = false)
     private String url;
@@ -34,11 +34,11 @@ public class Photos {
         this.id = id;
     }
 
-    public Rooms getRoom() {
+    public Room getRoom() {
         return rooms;
     }
 
-    public void setRoom(Rooms rooms) {
+    public void setRoom(Room rooms) {
         this.rooms = rooms;
     }
 
