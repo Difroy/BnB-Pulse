@@ -10,4 +10,5 @@ public interface UserService {
 	boolean usernameCheck (String username);
 	boolean emailCheck (String email);
 	void editUser (User user);
+	User getUserById(int id);
 }

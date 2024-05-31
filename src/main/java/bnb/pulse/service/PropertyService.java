@@ -15,7 +15,7 @@ public interface PropertyService {
 	List<Property> getReserve (HttpSession session);
 	void deleteReserve (int idPropertie,HttpSession session);
 	double getPriceReserve (HttpSession session);
-	void saveProperty (Property propertie, int idUser, MultipartFile coverPhoto, String title, String description, String address, String area, String city, String country, String pricePerNight, String maxGuest );
+	void saveProperty (Property property, HttpSession session, MultipartFile coverPhoto, String title, String description, String address, String area, String city, String country, String pricePerNight, String maxGuest );
 	void deletePropertie (int id);
 	List<Property> getPropertyByName(String name);
 	List<Property> getPropertyByPhotoId (int idPhoto);

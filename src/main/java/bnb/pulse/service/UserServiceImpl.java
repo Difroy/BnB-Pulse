@@ -2,6 +2,8 @@ package bnb.pulse.service;
 
 import jakarta.servlet.http.HttpSession;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,5 +41,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void editUser(User user) {
 		userDao.save(user);
+	}
+	@Override
+	public User getUserById(int id) {
+		Optional<User> optionalUser = userDao.findById(id);
+	    return optionalUser.orElse(null);
 	}
 }

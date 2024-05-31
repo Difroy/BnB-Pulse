@@ -1,6 +1,7 @@
 package bnb.pulse.service;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import java.util.Optional;
@@ -12,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import bnb.pulse.dao.PropertyDao;
 import bnb.pulse.model.Property;
+import bnb.pulse.model.User;
 import jakarta.servlet.http.HttpSession;
 
 @Service
@@ -20,6 +22,7 @@ public class PropertyServiceImpl implements PropertyService {
 	@Autowired
 	private PropertyDao propertieDao;
 	
+
 
 	@Override
 	public List<Property> getProperties() {
@@ -93,10 +96,33 @@ public class PropertyServiceImpl implements PropertyService {
 		return 0;
 	}
 	@Override
-	public void saveProperty(Property propertie, int idUser, MultipartFile coverPhoto, String title,
+	public void saveProperty(Property property, HttpSession session, MultipartFile coverPhoto, String title,
 			String description, String address, String area, String city, String country, String pricePerNight,
 			String maxGuest) {
 		
+		User currentUser = (User) session.getAttribute("user");
+		  property.setUser(currentUser);
+		  property.setTitle(title);
+		  property.setDescription(description);
+		  property.setAddress(address);
+		  property.setArea(area);
+		  property.setCity(city);
+		  property.setCountry(country);
+		  property.setPricePerNight(Double.parseDouble(pricePerNight));
+		  property.setMaxGuest(Integer.parseInt(maxGuest));
+		  property.setCoverPhoto(coverPhoto.getOriginalFilename());
+			if (coverPhoto != null && ! coverPhoto.isEmpty()) {
+				
+				try {
+					String format = coverPhoto.getContentType();
+					String cover = "data:"+format+";base64,"+Base64.getEncoder().encodeToString(coverPhoto.getBytes());
+					
+					property.setCoverPhoto(cover);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		
 	
 }
