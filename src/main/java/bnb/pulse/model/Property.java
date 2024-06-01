@@ -138,13 +138,6 @@ public class Property {
         this.pricePerNight = pricePerNight;
     }
     
-	/*
-	 * public BigDecimal getPricePerNight() { return pricePerNight; }
-	 * 
-	 * public void setPricePerNight(BigDecimal pricePerNight) { this.pricePerNight =
-	 * pricePerNight; }
-	 */
-
     public int getMaxGuest() {
         return maxGuest;
     }

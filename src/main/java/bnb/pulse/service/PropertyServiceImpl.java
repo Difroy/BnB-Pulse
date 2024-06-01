@@ -124,10 +124,10 @@ public class PropertyServiceImpl implements PropertyService {
 					property.setCoverPhoto(cover);
 					
 				} catch (Exception e) {
-					e.printStackTrace();
+					System.out.println(e.getMessage());
 				}
 			}
-		
+		    propertieDao.save(property);
 	
 }
 	@Override
