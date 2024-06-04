@@ -94,6 +94,45 @@
 						</p>
 						<p class="card-text">
 							<span class="price">86 €</span> <span class="text-muted">After
+								tax fees</span>
+						</p>
+						<p class="card-text">
+							<span class="badge bg-danger">Ne abbiamo ancora 3 a questo
+								prezzo!</span>
+						</p>
+						<p class="card-text">
+							<span class="badge bg-success">CANCELLAZIONE GRATUITA</span>
+						</p>
+						<div>
+							<span class="rating">8,3</span> <span class="text-muted">17.950
+								recensioni</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="container mt-5">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="booking-card">
+					<img th:each = "property : ${properties}" th:src="@{${property.coverPhoto == null ? 'https://via.placeholder.com/400x200' : property.coverPhoto}}">
+					<div class="booking-card-body">
+						<h5 th:text="${property.title}" class="card-title"></h5>
+						<p class="card-text text-muted">
+							<i class="bi bi-geo-alt" th:text="${property.area}"></i></p>
+						<p class="card-text">
+							<span class="badge bg-success">Colazione</span> <span
+								class="badge bg-primary">Check-in rapido</span>
+						</p>
+						<p class="card-text">
+							<span class="badge badge-custom">Ultima prenotazione per
+								varie date effettuata 2 ore fa</span>
+						</p>
+						<p class="card-text">
+							<span class="price" th:text="property.pricePerNight + '€'"></span> <span class="text-muted">After
 								tax & fees</span>
 						</p>
 						<p class="card-text">
@@ -112,6 +151,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
 
 </body>
 </html>

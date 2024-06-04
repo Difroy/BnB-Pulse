@@ -29,7 +29,7 @@ public class PropertyController {
 	private RoomService roomService;
 	
 	
-	private Property property;
+
 	
 	@GetMapping
 	public String getPage(Model model, 
