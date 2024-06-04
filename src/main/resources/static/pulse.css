@@ -14,7 +14,7 @@
 	justify-content: center;
 	align-items: center;
 	max-width: 1200px; /* Imposta una larghezza massima per la navbar */
-    margin: 0 auto; /* Centra la navbar con margini automatici */
+	margin: 0 auto; /* Centra la navbar con margini automatici */
 }
 
 .navbar-brand {
@@ -40,30 +40,38 @@
 }
 
 .booking-card {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-bottom: 15px;
-        }
-        .booking-card img {
-            width: 100%;
-            height: auto;
-        }
-        .booking-card-body {
-            padding: 15px;
-        }
-        .badge-custom {
-            background-color: #ff3d00;
-            color: #fff;
-        }
-        .price {
-            color: green;
-            font-weight: bold;
-        }
-        .rating {
-            color: #fff;
-            background-color: #007bff;
-            border-radius: 50%;
-            padding: 5px 10px;
-            margin-left: 10px;
-        }
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+
+.booking-card img {
+	width: 100%;
+	height: 315px; /* Imposta un'altezza fissa per tutte le immagini */
+	object-fit: cover;
+	/* Ritaglia e ridimensiona l'immagine per coprire l'area definita */
+}
+
+.booking-card-body {
+	padding: 15px;
+}
+
+.badge-custom {
+	background-color: #ff3d00;
+	color: #fff;
+}
+
+.price {
+	color: green;
+	font-weight: bold;
+}
+
+.rating {
+	color: #fff;
+	background-color: #007bff;
+	border-radius: 50%;
+	padding: 5px 10px;
+	margin-left: 10px;
+}
+
