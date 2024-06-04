@@ -72,7 +72,7 @@
 			</div>
 		</div>
 	</nav>
-	<div class="container mt-5">
+	<!-- <div class="container mt-5">
 		<div class="row">
 			<div class="col-md-4">
 				<div class="booking-card">
@@ -112,13 +112,13 @@
 			</div>
 		</div>
 	</div>
-	
+	 -->
 	
 	<div class="container mt-5">
-		<div class="row">
+		<div class="row" th:each = "property : ${properties}">
 			<div class="col-md-4">
 				<div class="booking-card">
-					<img th:each = "property : ${properties}" th:src="@{${property.coverPhoto == null ? 'https://via.placeholder.com/400x200' : property.coverPhoto}}">
+					<img th:src="@{${property.coverPhoto == null ? 'https://via.placeholder.com/400x200' : property.coverPhoto}}">
 					<div class="booking-card-body">
 						<h5 th:text="${property.title}" class="card-title"></h5>
 						<p class="card-text text-muted">
@@ -132,8 +132,8 @@
 								varie date effettuata 2 ore fa</span>
 						</p>
 						<p class="card-text">
-							<span class="price" th:text="property.pricePerNight + '€'"></span> <span class="text-muted">After
-								tax & fees</span>
+							<span class="price" th:text="${property.pricePerNight} + '€'"></span> <span class="text-muted">After
+								tax fees</span>
 						</p>
 						<p class="card-text">
 							<span class="badge bg-danger">Ne abbiamo ancora 3 a questo

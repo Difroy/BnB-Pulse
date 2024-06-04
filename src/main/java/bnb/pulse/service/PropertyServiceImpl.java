@@ -20,19 +20,19 @@ import jakarta.servlet.http.HttpSession;
 public class PropertyServiceImpl implements PropertyService {
 
 	@Autowired
-	private PropertyDao propertieDao;
+	private PropertyDao propertyDao;
 	
 
 
 	@Override
 	public List<Property> getProperties() {
-		return (List<Property>)propertieDao.findAll();
+		return (List<Property>)propertyDao.findAll();
 	}
 	@Override
 	public Property getPropertyById(int id) {
 		
 		
-		Optional<Property> optionalPropertie = propertieDao.findById(id);
+		Optional<Property> optionalPropertie = propertyDao.findById(id);
         return optionalPropertie.orElse(null);
 	}
 	@SuppressWarnings("unchecked")
@@ -127,20 +127,29 @@ public class PropertyServiceImpl implements PropertyService {
 					System.out.println(e.getMessage());
 				}
 			}
-		    propertieDao.save(property);
+		    propertyDao.save(property);
 	
 }
 	@Override
-	public void deletePropertie(int id) {
-		 propertieDao.deleteById(id);
+	public void deleteProperty(int id) {
+		 propertyDao.deleteById(id);
 	}
 	@Override
 	public List<Property> getPropertyByName(String title) {
-		return propertieDao.findByTitle(title);
+		return propertyDao.findByTitle(title);
 	}
 	
 	@Override
 	public List<Property> SearchPropertyByCity(String city) {
-		return propertieDao.findByCity(city);
+		return propertyDao.findByCity(city);
 	}
+	@Override
+    public List<Property> getPropertiesByUser(User user) {
+        return propertyDao.findByUser(user);
+    }
+	@Override
+	public void updateProperty(Property property) {
+	    propertyDao.save(property);
+	}
+	
 }

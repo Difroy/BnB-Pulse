@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,23 +32,18 @@ public class PropertyController {
 	
 
 	
-	@GetMapping
-	public String getPage(Model model, 
-				@RequestParam(name = "photoId", required = false) Integer id, 
-				@RequestParam(name = "room", required = false) Integer room, @RequestParam(name = "search", required = false) String search) {
+	 @GetMapping
+	    public String getPage(Model model, HttpSession session) {
+	        User currentUser = (User) session.getAttribute("user");
+	        if (currentUser == null) {
+	            return "redirect:/login";
+	        }
 		
-		
-		List<Property> properties;
-		if(search != null) {
-            properties = propertyService.SearchPropertyByCity(search);
-            }else {
-            	properties = propertyService.getProperties();
-           
-            }
-		model.addAttribute("properties ",properties);
-		model.addAttribute("property", new Property());
-		
-		return "property";
+	        List<Property> properties = propertyService.getPropertyByName(currentUser.getUsername());
+	        model.addAttribute("properties", properties);
+	        model.addAttribute("property", new Property());
+
+	        return "property";
 	}
 	
 	/*
@@ -78,8 +74,6 @@ public class PropertyController {
 	    return "registerProperty";
 	}
 	
-	
-	
 	@PostMapping("register")
 	public String registerProperty( @RequestParam("coverPhoto") MultipartFile coverPhoto,@RequestParam("title") String title, @RequestParam("description") String description, @RequestParam("address") String address, @RequestParam("area") String area, @RequestParam("city") String city, @RequestParam("country") String country, @RequestParam("pricePerNight") String pricePerNight, @RequestParam("maxGuest") String maxGuest, HttpSession session, Model model) {
 		
@@ -105,4 +99,62 @@ public class PropertyController {
 	    return "redirect:/property";
 	}
 	
+	@GetMapping("/edit/{id}")
+    public String showEditPropertyForm(@PathVariable("id") int id, Model model, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
+        Property property = propertyService.getPropertyById(id);
+        if (property == null || property.getUser().getId() != currentUser.getId()) {
+            return "redirect:/property";
+        }
+       
+        model.addAttribute("property", property);
+        return "editProperty";
+    }
+	
+	@PostMapping("/edit/{id}")
+	public String editProperty(@PathVariable("id") int id, @ModelAttribute("property") Property property,
+            HttpSession session) {
+	
+		 User currentUser = (User) session.getAttribute("user");
+	        if (currentUser == null) {
+	            return "redirect:/login";
+	
+	}
+	        
+	        Property existingProperty = propertyService.getPropertyById(id);
+	        if (existingProperty == null || existingProperty.getUser().getId() != currentUser.getId()) {
+	            return "redirect:/property";
+	        }
+	        
+	        property.setId(id);
+	        property.setUser(currentUser);
+	        propertyService.saveProperty(property, session, null, property.getTitle(), property.getDescription(),
+	                property.getAddress(), property.getArea(), property.getCity(), property.getCountry(),
+	                String.valueOf(property.getPricePerNight()), String.valueOf(property.getMaxGuest()));
+	        return "redirect:/property";
+	}
+	
+	@GetMapping("/delete/{id}")
+    public String deleteProperty(@PathVariable("id") int id, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+        if (currentUser == null) {
+            return "redirect:/login";
+        }
+
+        Property property = propertyService.getPropertyById(id);
+        if (property == null || property.getUser().getId() != currentUser.getId()) {
+            return "redirect:/property";
+        }
+
+        propertyService.deleteProperty(id);
+        return "redirect:/property";
+    }
+	
+	
+	
+
 }

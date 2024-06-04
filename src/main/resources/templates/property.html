@@ -106,5 +106,12 @@
 			th:href="@{/property/{id}(id=${property.id})}"
 			th:text="${property.title}"></a></li>
 	</ul>
+	<div class="mt-3">
+		<a th:href="@{/property/edit/{id}(id=${property.id})}"
+			class="btn btn-warning">Modifica</a> <a
+			th:href="@{/property/delete/{id}(id=${property.id})}"
+			class="btn btn-danger">Elimina</a>
+	</div>
+
 </body>
 </html>

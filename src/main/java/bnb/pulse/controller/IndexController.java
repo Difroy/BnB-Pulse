@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import bnb.pulse.model.Property;
@@ -25,17 +24,14 @@ public class IndexController {
 	private PropertyService propertyService;
 
 
-	@SuppressWarnings("unchecked")
+
 	@GetMapping
-	public String getPage (Model model, HttpSession session, @RequestParam(name = "id", required = false) Integer id) {
+	public String getPage (Model model, HttpSession session ) {
 		
 		
 		List<Property> properties = propertyService.getProperties();
-		
-		properties = id == null ? (List<Property>) new Property() : (List<Property>) propertyService.getPropertyById(id);
 		User user = (User) session.getAttribute("user");
 		model.addAttribute("user", user);
-		
 		model.addAttribute("properties", properties);
 		
 		return "index";
