@@ -8,6 +8,9 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+
+
 	<groupId>bnb</groupId>
 	<artifactId>pulse</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
