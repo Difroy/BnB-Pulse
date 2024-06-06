@@ -154,7 +154,18 @@ public class PropertyController {
         return "redirect:/property";
     }
 	
-	
+	@GetMapping("/userarea")
+	public String getUserArea(Model model, HttpSession session) {
+	    User currentUser = (User) session.getAttribute("user");
+	    if (currentUser == null) {
+	        return "redirect:/login";
+	    }
+	    
+	    List<Property> userProperties = propertyService.getPropertiesByUser(currentUser);
+	    model.addAttribute("properties", userProperties);
+	    
+	    return "userarea";
+	}
 	
 
 }

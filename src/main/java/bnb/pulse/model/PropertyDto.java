@@ -1,7 +1,6 @@
 package bnb.pulse.model;
 
-import java.io.IOException;
-import java.util.Base64;
+
 
 import org.springframework.web.multipart.MultipartFile;
 
