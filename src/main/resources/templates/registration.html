@@ -11,7 +11,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
 	rel="stylesheet">
-<link th:href="@{pulse.css}" rel="stylesheet">
+<link th:href="@{css/pulse.css}" rel="stylesheet">
 <title>Home - BnB Pulse</title>
 <style>
 body, html {
@@ -30,7 +30,7 @@ body, html {
 
 	<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{LOGO.png}"
+			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{images/LOGO.png}"
 				alt="Logo" class="logoN d-inline-block align-top me-2">
 			</a>
 			<form class="d-flex ms-2 flex-grow-1" role="search"
@@ -60,33 +60,11 @@ body, html {
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div th:if="${session['user'] != null}"
-				class="collapse navbar-collapse" id="navbarText">
+			
+			<div class="collapse navbar-collapse" id="navbarText">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img th:src="@{'/' + ${utente.avatar}}"
-							alt="Immagine Impostazioni" class="img-fluid rounded-circle"
-							style="width: 30px; height: 30px;">
-					</a>
-						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<!-- Inserisci qui le voci del dropdown -->
-							<li><a class="dropdown-item" th:href="@{/areariservata}">Area
-									Riservata</a></li>
-							<li><a class="dropdown-item"
-								th:href="@{/modificacredenziali}">Modifica Credenziali</a></li>
-							<li><hr class="dropdown-divider"></li>
-							<li class="nav-item"><a th:href="@{/areariservata/logout}"
-								class="nav-link active" aria-current="page">Logout</a></li>
-						</ul></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
-				</ul>
-			</div>
-			<div th:unless="${session['utente']!= null}"
-				class="collapse navbar-collapse" id="navbarText">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
+					</li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/registration}">Registrazione</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
