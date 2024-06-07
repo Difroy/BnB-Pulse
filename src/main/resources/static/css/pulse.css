@@ -5,9 +5,6 @@
 	width: auto; /* Mantieni la proporzione dell'immagine */
 }
 
-.navbar {
-	justify-content: center;
-}
 
 .navbar .container-fluid {
 	display: flex;
