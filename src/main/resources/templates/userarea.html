@@ -10,28 +10,50 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/}"> <img th:src="@{images/LOGO.png}" alt="Logo" class="logoN d-inline-block align-top me-2"> </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div th:if="${session['user'] != null}" class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-                <li class="nav-item"><a class="nav-link" th:href="@{/property}">Area Riservata</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
-            </ul>
-        </div>
-        <div th:unless="${session['user']!= null}" class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-                <li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/registration}">Registrazione</a></li>
-                <li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+	<nav class="navbar navbar-expand-lg">
+		<div class="container-fluid">
+			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{images/LOGO.png}"
+				alt="Logo" class="logoN d-inline-block align-top me-2">
+			</a>
+			<form class="d-flex ms-2 flex-grow-1" role="search"
+				action="/categoria/ricerca" method="get">
+				<div class="input-group">
+					<div class="dropdown">
+						<button class="btn btn-warning dropdown-toggle" type="button"
+							id="dropdownMenuButton" data-bs-toggle="dropdown"
+							aria-expanded="false">Categorie</button>
+						<ul class="dropdown-menu bg-warning"
+							aria-labelledby="dropdownMenuButton">
+							<li th:each="categoria : ${categorie}"><a
+								th:text="${categoria.tipo}" class="dropdown-item"
+								th:href="@{/categoria(id=${categoria.id})}"></a></li>
+						</ul>
+					</div>
+					<input class="form-control" type="search" placeholder="Cerca"
+						aria-label="Search" name="ricerca">
+					<button class="btn btn-warning" type="submit">
+						<i class="bi bi-search"></i>
+					</button>
+				</div>
+			</form>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarText"
+				aria-controls="navbarText" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div th:if="${session['user'] != null}"
+				class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
+					<li class="nav-item"><a class="nav-link" th:href="@{/property}">Area
+							Riservata</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/logout}">Logout</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
+				</ul>
+			</div>
+			
+		</div>
+	</nav>
 
 <div class="container mt-5">
     <div class="row">
