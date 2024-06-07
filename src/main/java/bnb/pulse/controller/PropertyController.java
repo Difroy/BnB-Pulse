@@ -1,5 +1,6 @@
 package bnb.pulse.controller;
 
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -116,7 +117,10 @@ public class PropertyController {
     }
 	
 	@PostMapping("/edit/{id}")
-	public String editProperty(@PathVariable("id") int id, @ModelAttribute("property") Property property,
+	public String editProperty(
+			@PathVariable("id") int id,
+			 @RequestParam(value = "coverPhoto", required = false) MultipartFile coverPhoto,
+			@ModelAttribute("property") Property property,
             HttpSession session) {
 	
 		 User currentUser = (User) session.getAttribute("user");
@@ -132,7 +136,8 @@ public class PropertyController {
 	        
 	        property.setId(id);
 	        property.setUser(currentUser);
-	        propertyService.saveProperty(property, session, null, property.getTitle(), property.getDescription(),
+	        
+	        propertyService.saveProperty(property, session, coverPhoto, property.getTitle(), property.getDescription(),
 	                property.getAddress(), property.getArea(), property.getCity(), property.getCountry(),
 	                String.valueOf(property.getPricePerNight()), String.valueOf(property.getMaxGuest()));
 	        return "redirect:/property";
