@@ -13,4 +13,5 @@ public interface PropertyDao extends CrudRepository<Property, Integer>{
     List<Property> findByTitle(String title);
     List<Property> findByCity(String city);
     List<Property> findByUser(User user);
+    List<Property> findByCityAndMaxGuestGreaterThanEqual(String city, int maxGuest);
 }

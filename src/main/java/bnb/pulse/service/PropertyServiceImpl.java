@@ -1,5 +1,6 @@
 package bnb.pulse.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -150,6 +151,17 @@ public class PropertyServiceImpl implements PropertyService {
 	@Override
 	public void updateProperty(Property property) {
 	    propertyDao.save(property);
+	   
 	}
+	
+	@Override
+    public List<Property> findAvailableProperties(String city, LocalDate checkIn, LocalDate checkOut, int guests) {
+        // Questo è un esempio di filtro, dovrai implementare la logica per verificare la disponibilità
+        List<Property> properties = propertyDao.findByCityAndMaxGuestGreaterThanEqual(city, guests);
+        
+        // Qui dovresti aggiungere la logica per verificare la disponibilità delle date, ad esempio consultando un altro repository che tiene traccia delle prenotazioni
+        
+        return properties;
+    }
 	
 }

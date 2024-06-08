@@ -1,5 +1,6 @@
 package bnb.pulse.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,7 @@ public interface PropertyService {
 	List<Property> SearchPropertyByCity(String city);
 	List<Property> getPropertiesByUser(User user);
 	void updateProperty(Property property);
+	public List<Property> findAvailableProperties(String city, LocalDate checkIn, LocalDate checkOut, int guests);
 	
 	
 }

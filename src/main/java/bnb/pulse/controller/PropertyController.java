@@ -1,8 +1,10 @@
 package bnb.pulse.controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -171,6 +173,21 @@ public class PropertyController {
 	    
 	    return "userarea";
 	}
+	
+	
+	@GetMapping("/search")
+    public String searchProperties(
+            @RequestParam("citta") String city,
+            @RequestParam("checkin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
+            @RequestParam("checkout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
+            @RequestParam("ospiti") int guests,
+            Model model) {
+
+        List<Property> availableProperties = propertyService.findAvailableProperties(city, checkIn, checkOut, guests);
+        model.addAttribute("properties", availableProperties);
+
+        return "searchResults";  // Assicurati di avere un template searchResults.html per visualizzare i risultati
+    }
 	
 
 }
