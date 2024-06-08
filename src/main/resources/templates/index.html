@@ -28,27 +28,17 @@
 			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{images/LOGO.png}"
 				alt="Logo" class="logoN d-inline-block align-top me-2">
 			</a>
-			<form class="d-flex ms-2 flex-grow-1" role="search"
-				action="/categoria/ricerca" method="get">
-				<div class="input-group">
-					<div class="dropdown">
-						<button class="btn btn-warning dropdown-toggle" type="button"
-							id="dropdownMenuButton" data-bs-toggle="dropdown"
-							aria-expanded="false">Categorie</button>
-						<ul class="dropdown-menu bg-warning"
-							aria-labelledby="dropdownMenuButton">
-							<li th:each="categoria : ${categorie}"><a
-								th:text="${categoria.tipo}" class="dropdown-item"
-								th:href="@{/categoria(id=${categoria.id})}"></a></li>
-						</ul>
-					</div>
-					<input class="form-control" type="search" placeholder="Cerca"
-						aria-label="Search" name="ricerca">
-					<button class="btn btn-warning" type="submit">
-						<i class="bi bi-search"></i>
-					</button>
-				</div>
-			</form>
+			 <form class="d-flex ms-2 flex-grow-1" role="search" action="/categoria/ricerca" method="get">
+            <div class="input-group">
+                <input class="form-control" type="search" placeholder="Città" aria-label="Città" name="citta">
+                <input class="form-control" type="date" aria-label="Check-in" name="checkin">
+                <input class="form-control" type="date" aria-label="Check-out" name="checkout">
+                <input class="form-control" type="number" placeholder="Ospiti" aria-label="Ospiti" name="ospiti" min="1">
+                <button class="btn btn-warning" type="submit">
+                    <i class="bi bi-search"></i> Cerca
+                </button>
+            </div>
+        </form>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false"
