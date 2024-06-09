@@ -1,5 +1,7 @@
 package bnb.pulse.model;
 
+import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -56,6 +59,18 @@ public class Property {
 
     public double calculateTotalPrice(int numberOfNights) {
     	        return pricePerNight * numberOfNights;
+    }
+    
+    @OneToMany(mappedBy = "property", cascade = CascadeType.ALL)
+    private List<Booking> bookings;
+
+  
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     public int getId() {

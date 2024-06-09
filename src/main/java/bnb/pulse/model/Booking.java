@@ -53,6 +53,77 @@ public class Booking {
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@Column(name = "updated_boo", nullable = false)
 	private LocalDateTime updatedBoo;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Property getProperty() {
+		return property;
+	}
+
+	public void setProperty(Property property) {
+		this.property = property;
+	}
+
+	public LocalDate getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(LocalDate checkIn) {
+		this.checkIn = checkIn;
+	}
+
+	public LocalDate getCheckOut() {
+		return checkOut;
+	}
+
+	public void setCheckOut(LocalDate checkOut) {
+		this.checkOut = checkOut;
+	}
+
+	public int getnGuest() {
+		return nGuest;
+	}
+
+	public void setnGuest(int nGuest) {
+		this.nGuest = nGuest;
+	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+	public LocalDateTime getCreatedBoo() {
+		return createdBoo;
+	}
+
+	public void setCreatedBoo(LocalDateTime createdBoo) {
+		this.createdBoo = createdBoo;
+	}
+
+	public LocalDateTime getUpdatedBoo() {
+		return updatedBoo;
+	}
+
+	public void setUpdatedBoo(LocalDateTime updatedBoo) {
+		this.updatedBoo = updatedBoo;
+	}
 
 	
 }
