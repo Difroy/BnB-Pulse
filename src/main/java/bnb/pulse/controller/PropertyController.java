@@ -177,17 +177,24 @@ public class PropertyController {
 	
 	@GetMapping("/search")
     public String searchProperties(
-            @RequestParam("citta") String city,
-            @RequestParam("checkin") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
-            @RequestParam("checkout") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
-            @RequestParam("ospiti") int guests,
+            @RequestParam(value="citta", required = false) String city,
+            @RequestParam(value= "checkin", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkIn,
+            @RequestParam(value="checkout", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOut,
+            @RequestParam("ospiti") Integer guests,
             Model model) {
 
+		 // Ottieni tutte le località per il dropdown
+	    List<String> locations = propertyService.getAllLocations();
+	    model.addAttribute("locations", locations);
+		
+	    if (city != null && checkIn != null && checkOut != null && guests != null) {
         List<Property> availableProperties = propertyService.findAvailableProperties(city, checkIn, checkOut, guests);
         model.addAttribute("properties", availableProperties);
-
+	    }
         return "searchResults";  // Assicurati di avere un template searchResults.html per visualizzare i risultati
     }
 	
+
+
 
 }
