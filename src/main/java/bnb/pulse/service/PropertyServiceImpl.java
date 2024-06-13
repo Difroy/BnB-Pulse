@@ -164,4 +164,13 @@ public class PropertyServiceImpl implements PropertyService {
         return properties;
     }
 	
+	 @Override
+	    public List<String> getAllLocations() {
+	        List<Property> properties = (List<Property>) propertyDao.findAll();
+	        return properties.stream()
+	                         .map(Property::getCity)
+	                         .distinct()
+	                         .collect(Collectors.toList());
+	    }
+	
 }

@@ -25,6 +25,6 @@ public interface PropertyService {
 	List<Property> getPropertiesByUser(User user);
 	void updateProperty(Property property);
 	public List<Property> findAvailableProperties(String city, LocalDate checkIn, LocalDate checkOut, int guests);
-	
+	public List<String> getAllLocations();
 	
 }
