@@ -14,6 +14,21 @@
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{images/LOGO.png}" alt="Logo" class="logoN d-inline-block align-top me-2">
         </a>
+        <form class="d-flex ms-2 flex-grow-1" role="search" action="/property/search" method="get">
+            <div class="input-group">
+                <!-- Dropdown per le località -->
+                <select class="form-control" name="citta">
+                    <option value="">Seleziona Città</option>
+                    <option th:each="location : ${locations}" th:value="${location}" th:text="${location}"></option>
+                </select>
+                <input class="form-control" type="date" aria-label="Check-in" name="checkin">
+                <input class="form-control" type="date" aria-label="Check-out" name="checkout">
+                <input class="form-control" type="number" placeholder="Ospiti" aria-label="Ospiti" name="ospiti" min="1">
+                <button class="btn btn-warning" type="submit">
+                    <i class="bi bi-search"></i> Cerca
+                </button>
+            </div>
+        </form>
     </div>
 </nav>
 
