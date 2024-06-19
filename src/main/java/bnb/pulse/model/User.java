@@ -40,8 +40,19 @@ public class User {
 
 	@Column(name = "password", nullable = false, length = 50)
 	private String password;
+	
+	@Column (name = "avatar")
+	private String avatar;
 
 	
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
 	public int getId() {
 		return id;
 	}
