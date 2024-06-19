@@ -16,8 +16,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
 	rel="stylesheet">
- 
- <link th:href="@{/css/pulse.css}" rel="stylesheet">
+
+<link th:href="@{/css/pulse.css}" rel="stylesheet">
 <title>Home - BnB Pulse</title>
 
 </head>
@@ -25,20 +25,24 @@
 
 	<nav class="navbar navbar-expand-lg">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}"> <img th:src="@{images/LOGO.png}"
-				alt="Logo" class="logoN d-inline-block align-top me-2">
+			<a class="navbar-brand" th:href="@{/}"> <img
+				th:src="@{images/LOGO.png}" alt="Logo"
+				class="logoN d-inline-block align-top me-2">
 			</a>
-			 <form class="d-flex ms-2 flex-grow-1" role="search" action="/categoria/ricerca" method="get">
-            <div class="input-group">
-                <input class="form-control" type="search" placeholder="Città" aria-label="city" name="city">
-                <input class="form-control" type="date" aria-label="Check-in" name="checkin">
-                <input class="form-control" type="date" aria-label="Check-out" name="checkout">
-                <input class="form-control" type="number" placeholder="Ospiti" aria-label="guest" name="guest" min="1">
-                <button class="btn btn-warning" type="submit">
-                    <i class="bi bi-search"></i> Cerca
-                </button>
-            </div>
-        </form>
+			<form class="d-flex ms-2 flex-grow-1" role="search"
+				action="/categoria/ricerca" method="get">
+				<div class="input-group">
+					<input class="form-control" type="search" placeholder="Città"
+						aria-label="city" name="city"> <input class="form-control"
+						type="date" aria-label="Check-in" name="checkin"> <input
+						class="form-control" type="date" aria-label="Check-out"
+						name="checkout"> <input class="form-control" type="number"
+						placeholder="Ospiti" aria-label="guest" name="guest" min="1">
+					<button class="btn btn-warning" type="submit">
+						<i class="bi bi-search"></i> Cerca
+					</button>
+				</div>
+			</form>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarText"
 				aria-controls="navbarText" aria-expanded="false"
@@ -57,23 +61,22 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img th:src="@{'/' + ${user.avatar}}"
-							alt="Immagine Impostazioni" class="img-fluid rounded-circle"
+							<img th:src="@{'/' + ${user.avatar}}" alt="Immagine Impostazioni"
+							class="img-fluid rounded-circle"
 							style="width: 30px; height: 30px;">
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<!-- Inserisci qui le voci del dropdown -->
 							<li><a class="dropdown-item" th:href="@{/property}">Area
 									Riservata</a></li>
-							<li><a class="dropdown-item"
-								th:href="@{/logout}">Logout</a></li>
+							<li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
 							<li>
 								<hr class="dropdown-divider">
 							</li>
 							<li class="nav-item"><a th:href="@{/}"
 								class="nav-link active" aria-current="page">IT</a></li>
 						</ul></li>
-						</ul>
+				</ul>
 			</div>
 			<div th:unless="${session['user']!= null}"
 				class="collapse navbar-collapse" id="navbarText">
@@ -87,44 +90,51 @@
 			</div>
 		</div>
 	</nav>
-	
+
 	<div class="container mt-5">
-        <div class="row">
-            <div th:each="property : ${properties}" class="col-md-3 mb-3">
-                <div class="card booking-card">
-                    <img th:src="${property.coverPhoto == null ? 'https://via.placeholder.com/400x200' : property.coverPhoto}" class="card-img-top booking-card-img">
-                    <div class="card-body booking-card-body">
-                        <h5 th:text="${property.title}" class="card-title"></h5>
-                        <p class="card-text text-muted">
-                            <i class="bi bi-geo-alt"></i>
-                            <span th:text="${property.area}"></span>
-                        </p>
-                        <p class="card-text">
-                            <span class="badge bg-success">Colazione</span>
-                            <span class="badge bg-primary">Check-in rapido</span>
-                        </p>
-                        <p class="card-text">
-                            <span class="badge badge-custom">Ultima prenotazione per varie date effettuata 2 ore fa</span>
-                        </p>
-                        <p class="card-text">
-                            <span class="price" th:text="${property.pricePerNight} + '€'"></span>
-                            <span class="text-muted">After tax fees</span>
-                        </p>
-                        <p class="card-text">
-                            <span class="badge bg-danger">Ne abbiamo ancora 3 a questo prezzo!</span>
-                        </p>
-                        <p class="card-text">
-                            <span class="badge bg-success">CANCELLAZIONE GRATUITA</span>
-                        </p>
-                        <div>
-                            <span class="rating">8,3</span>
-                            <span class="text-muted">17.950 recensioni</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div th:each="property : ${properties}" class="col-md-3 mb-3">
+				<a th:href="@{/property/{id}(id=${property.id})}"
+					class="text-decoration-none text-dark">
+					<div class="card booking-card">
+						<img
+							th:src="${property.coverPhoto == null ? 'https://via.placeholder.com/400x200' : property.coverPhoto}"
+							class="card-img-top booking-card-img">
+						<div class="card-body booking-card-body">
+							<h5 th:text="${property.title}" class="card-title"></h5>
+							<p class="card-text text-muted">
+								<i class="bi bi-geo-alt"></i> <span th:text="${property.area}"></span>
+							</p>
+							<p class="card-text">
+								<span class="badge bg-success">Colazione</span> <span
+									class="badge bg-primary">Check-in rapido</span>
+							</p>
+							<p class="card-text">
+								<span class="badge badge-custom">Ultima prenotazione per
+									varie date effettuata 2 ore fa</span>
+							</p>
+							<p class="card-text">
+								<span class="price" th:text="${property.pricePerNight} + '€'"></span>
+								<span class="text-muted">After tax fees</span>
+							</p>
+							<p class="card-text">
+								<span class="badge bg-danger">Ne abbiamo ancora 3 a
+									questo prezzo!</span>
+							</p>
+							<p class="card-text">
+								<span class="badge bg-success">CANCELLAZIONE GRATUITA</span>
+							</p>
+							<div>
+								<span class="rating">8,3</span> <span class="text-muted">17.950
+									recensioni</span>
+							</div>
+						</div>
+
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
