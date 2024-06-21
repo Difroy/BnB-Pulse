@@ -61,9 +61,18 @@
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 						role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img th:src="@{'/' + ${user.avatar}}" alt="Immagine Impostazioni"
+							<!-- 	<img th:src="@{'/' + ${user.avatar}}" alt="Immagine Impostazioni"
+							class="img-fluid rounded-circle"
+							style="width: 30px; height: 30px;"> --> <img
+							th:if="${user.avatar != null}"
+							th:src="@{/images/} + ${user.avatar}" alt="Immagine Impostazioni"
+							class="img-fluid rounded-circle"
+							style="width: 30px; height: 30px;"> <img
+							th:if="${user.avatar == null}"
+							th:src="@{/images/userdefault.png}" alt="Immagine Impostazioni"
 							class="img-fluid rounded-circle"
 							style="width: 30px; height: 30px;">
+
 					</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<!-- Inserisci qui le voci del dropdown -->
@@ -77,18 +86,16 @@
 								class="nav-link active" aria-current="page">IT</a></li>
 							<!-- Voci specifiche per utenti admin -->
 							<li th:if="${user.userType == 'host'}"><a
-								class="dropdown-item" th:href="@{/}">Dashboard
-									Admin</a></li>
+								class="dropdown-item" th:href="@{/}">Dashboard Admin</a></li>
 
 							<!-- Voci specifiche per utenti normali -->
 							<li th:if="${user.userType == 'guest'}"><a
-								class="dropdown-item" th:href="@{/}">Profilo
-									Utente</a></li>
+								class="dropdown-item" th:href="@{/}">Profilo Utente</a></li>
 						</ul>
 				</ul>
 
 
-				
+
 			</div>
 
 
@@ -96,13 +103,30 @@
 
 			<div th:unless="${session['user']!= null}"
 				class="collapse navbar-collapse" id="navbarText">
+
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-center">
-					<li class="nav-item"><a class="nav-link" th:href="@{/login}">Login</a>
-					</li>
-					<li class="nav-item"><a class="nav-link"
-						th:href="@{/registration}">Registrazione</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/}">IT</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<img th:src="@{/images/userdefault.png}"
+							alt="Immagine Impostazioni" class="img-fluid rounded-circle"
+							style="width: 30px; height: 30px;">
+					</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<!-- Inserisci qui le voci del dropdown -->
+							<li><a class="dropdown-item" th:href="@{/login}">Accedi</a></li>
+							<li><a class="dropdown-item" th:href="@{/registration}">Registration</a></li>
+							<li>
+								<hr class="dropdown-divider">
+							</li>
+							<li class="nav-item"><a th:href="@{/registrationHost}"
+								class="nav-link active" aria-current="page">Diventa Host</a></li>
+
+						</ul>
 				</ul>
+
+
+
 			</div>
 		</div>
 	</nav>
