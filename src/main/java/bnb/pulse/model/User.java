@@ -43,6 +43,19 @@ public class User {
 	
 	@Column (name = "avatar")
 	private String avatar;
+	
+	@Column(name = "user_type", nullable = false, length = 20)
+	private String userType;
+
+	
+	
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
 	
 	public String getAvatar() {

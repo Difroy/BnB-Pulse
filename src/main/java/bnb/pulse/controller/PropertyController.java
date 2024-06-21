@@ -45,6 +45,7 @@ public class PropertyController {
 	        List<Property> properties = propertyService.getPropertyByName(currentUser.getUsername());
 	        model.addAttribute("properties", properties);
 	        model.addAttribute("property", new Property());
+	        model.addAttribute("user", currentUser); // Aggiungi l'utente al modello
 
 	        return "property";
 	}
